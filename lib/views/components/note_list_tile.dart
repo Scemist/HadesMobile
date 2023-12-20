@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import 'package:teste_flutter_1/models/note.dart';
+import 'package:hades_mobile/models/note.dart';
 
 class NoteListTile extends StatelessWidget {
   final Note note;

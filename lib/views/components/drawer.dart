@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import 'package:teste_flutter_1/views/settings_page.dart';
+import 'package:hades_mobile/views/settings_page.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({super.key});

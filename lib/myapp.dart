@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teste_flutter_1/views/home_page.dart';
+import 'package:hades_mobile/views/home_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

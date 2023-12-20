@@ -1,6 +1,6 @@
-import 'package:teste_flutter_1/models/note.dart';
-import 'package:teste_flutter_1/views/note_edit.dart';
-import 'package:teste_flutter_1/views/note_list_page.dart';
+import 'package:hades_mobile/models/note.dart';
+import 'package:hades_mobile/views/note_edit.dart';
+import 'package:hades_mobile/views/note_list_page.dart';
 
 class NoteController {
   static NoteListPage get all {

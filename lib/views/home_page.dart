@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import 'package:teste_flutter_1/controllers/note_controller.dart';
-import 'package:teste_flutter_1/views/components/drawer.dart';
+import 'package:hades_mobile/controllers/note_controller.dart';
+import 'package:hades_mobile/views/components/drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

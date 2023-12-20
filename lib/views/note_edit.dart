@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import 'package:teste_flutter_1/controllers/note_controller.dart';
+import 'package:hades_mobile/controllers/note_controller.dart';
 
 class NotePage extends StatefulWidget {
   final int index = 2813;

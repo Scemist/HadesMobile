@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import 'package:teste_flutter_1/models/note.dart';
-import 'package:teste_flutter_1/views/components/drawer.dart';
-import 'package:teste_flutter_1/views/components/note_list_tile.dart';
+import 'package:hades_mobile/models/note.dart';
+import 'package:hades_mobile/views/components/drawer.dart';
+import 'package:hades_mobile/views/components/note_list_tile.dart';
 
 class NoteListPage extends StatelessWidget {
   final List<Note> noteList;

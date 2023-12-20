@@ -1,4 +1,4 @@
-package com.digiton.tech.teste1.hades_mobile
+package digiton.hades
 
 import io.flutter.embedding.android.FlutterActivity
 
