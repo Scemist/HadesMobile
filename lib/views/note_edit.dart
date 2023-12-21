@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hades_mobile/views/note_list_page.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:hades_mobile/controllers/note_controller.dart';
 
@@ -87,6 +88,7 @@ class _NotePageState extends State<NotePage> {
                       title: titleController.text,
                       body: bodyController.text,
                     );
+
                   },
                   style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(

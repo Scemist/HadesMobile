@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int currentPageIndex = 0;
 
-  final _pagesList = [
+  List<Widget> _pagesList = [
     NoteController.all,
     NoteController.create,
   ];
@@ -38,6 +38,12 @@ class _HomePageState extends State<HomePage> {
         unselectedItemColor: Colors.white60,
         onTap: (newPageIndex) {
           setState(() {
+            if (newPageIndex == 0) {
+              _pagesList = [
+                NoteController.all,
+                NoteController.create,
+              ];
+            }
             currentPageIndex = newPageIndex;
           });
         },
