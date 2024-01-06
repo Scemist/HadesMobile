@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:hades_mobile/models/note.dart';
@@ -12,7 +13,9 @@ class NoteListTile extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       child: ListTile(
-        onTap: () {},
+        onTap: () {
+          print('Abrir');
+        },
         title: Text(note.title),
         textColor: Colors.white,
         tileColor: const Color.fromARGB(255, 59, 65, 85),

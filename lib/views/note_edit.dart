@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hades_mobile/views/note_list_page.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:hades_mobile/controllers/note_controller.dart';
 

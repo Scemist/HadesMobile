@@ -12,11 +12,18 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int currentPageIndex = 0;
+  late PageController pageController;
 
   List<Widget> _pagesList = [
     NoteController.all,
     NoteController.create,
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    pageController = PageController(initialPage: currentPageIndex);
+  }
 
   @override
   Widget build(BuildContext context) {
