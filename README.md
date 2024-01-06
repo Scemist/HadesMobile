@@ -1,4 +1,4 @@
-# hades_mobile
+# digi_bloc
 
 A new Flutter project.
 
