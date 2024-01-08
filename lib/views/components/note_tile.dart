@@ -16,6 +16,38 @@ class NoteTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      child: ListTile(
+        onTap: () {
+          print('abrir');
+        },
+        title: Text(note.title),
+        textColor: Colors.white,
+        tileColor: const Color.fromARGB(255, 59, 65, 85),
+        leading: const Icon(
+          LucideIcons.book,
+          color: Color.fromARGB(255, 107, 107, 136),
+        ),
+        trailing: InkWell(
+          child: const Padding(
+            padding: EdgeInsets.all(8),
+            child: Icon(
+              LucideIcons.trash,
+              color: Color.fromARGB(255, 128, 97, 89),
+              size: 15,
+            ),
+          ),
+          onTap: () {
+            _noteBloc.inputNote.add(DestroyNote(note: note));
+          },
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(14),
+        ),
+      ),
+    );
+
     return ListTile(
       title: Text(note.title),
       leading: const Icon(LucideIcons.file),
