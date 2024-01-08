@@ -1,10 +1,7 @@
-import 'dart:math';
-
 import 'package:digi_bloc/blocs/note_bloc.dart';
 import 'package:digi_bloc/blocs/note_event.dart';
 import 'package:digi_bloc/blocs/note_state.dart';
 import 'package:digi_bloc/models/note.dart';
-import 'package:digi_bloc/providers/note_provider.dart';
 import 'package:digi_bloc/views/components/note_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
@@ -33,7 +30,9 @@ class _NotesPageState extends State<NotesPage> {
     return Column(
       children: [
         ElevatedButton(
-          onPressed: () async {},
+          onPressed: () async {
+            _noteBloc.inputNote.add(StoreNote(note: Note(title: 'Olá Mundo')));
+          },
           child: const Icon(LucideIcons.plus),
         ),
         Expanded(
@@ -49,10 +48,10 @@ class _NotesPageState extends State<NotesPage> {
                 return noteList.isNotEmpty
                     ? ListView.builder(
                         itemCount: noteList.length,
-                        itemBuilder: (context, index) {
-                          final note = noteList[index];
-                          return NoteTile(title: note.title, id: 1);
-                        },
+                        itemBuilder: (context, index) => NoteTile(
+                          note: noteList[index],
+                          noteBloc: _noteBloc,
+                        ),
                       )
                     : const Center(child: Text('Vazio'));
               }

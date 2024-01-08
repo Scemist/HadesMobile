@@ -6,12 +6,16 @@ import 'package:digi_bloc/providers/note_provider.dart';
 
 class NoteBloc {
   final _repository = NoteProvider();
-
   final StreamController<NoteEvent> _inputNoteController = StreamController<NoteEvent>();
-  Sink<NoteEvent> get inputNote => _inputNoteController.sink;
-
   final StreamController<NoteState> _outputNoteController = StreamController<NoteState>();
-  Stream<NoteState> get outputNote => _outputNoteController.stream;
+
+  Sink<NoteEvent> get inputNote {
+    return _inputNoteController.sink;
+  }
+
+  Stream<NoteState> get outputNote {
+    return _outputNoteController.stream;
+  }
 
   NoteBloc() {
     _inputNoteController.stream.listen(_mapEventToState);
