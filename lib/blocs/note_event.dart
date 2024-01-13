@@ -13,3 +13,8 @@ class DestroyNote extends NoteEvent {
   final Note note;
   DestroyNote({required this.note});
 }
+
+class UpdateNote extends NoteEvent {
+  final Note note;
+  UpdateNote({required this.note});
+}

@@ -1,12 +1,13 @@
+import 'package:digi_bloc/blocs/note_event.dart';
 import 'package:digi_bloc/models/note.dart';
-import 'package:digi_bloc/views/components/main_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
 class NotePage extends StatefulWidget {
   final note;
+  final bloc;
 
-  const NotePage({super.key, this.note});
+  const NotePage({super.key, this.note, this.bloc});
 
   @override
   State<NotePage> createState() => _NotePageState();
@@ -91,8 +92,10 @@ class _NotePageState extends State<NotePage> {
               children: [
                 TextButton(
                   onPressed: () {
-                    print(_titleController.text);
-                    print(_bodyController.text);
+                    widget.note.title = _titleController.text;
+                    widget.note.body = _bodyController.text;
+
+                    widget.bloc.inputNote.add(UpdateNote(note: widget.note));
                   },
                   style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(

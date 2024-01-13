@@ -30,6 +30,8 @@ class NoteBloc {
       notes = await _repository.all;
     } else if (event is StoreNote) {
       notes = await _repository.store(note: event.note);
+    } else if (event is UpdateNote) {
+      notes = await _repository.update(note: event.note);
     } else if (event is DestroyNote) {
       notes = await _repository.destroy(note: event.note);
     }

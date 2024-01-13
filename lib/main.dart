@@ -35,7 +35,6 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         body: Padding(
           padding: const EdgeInsets.all(14),
-          // child: screens[currentIndex],
           child: IndexedStack(
             index: currentIndex,
             children: screens,

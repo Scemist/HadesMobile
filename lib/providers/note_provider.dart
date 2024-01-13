@@ -21,4 +21,8 @@ class NoteProvider {
     _notes.remove(note);
     return Future.delayed(const Duration(seconds: 1), () => _notes);
   }
+
+  update({required Note note}) {
+    return _notes;
+  }
 }
