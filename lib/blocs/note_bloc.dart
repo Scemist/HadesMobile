@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'package:digi_bloc/blocs/note_event.dart';
-import 'package:digi_bloc/blocs/note_state.dart';
-import 'package:digi_bloc/models/note.dart';
-import 'package:digi_bloc/providers/note_provider.dart';
+import 'package:hades/blocs/note_event.dart';
+import 'package:hades/blocs/note_state.dart';
+import 'package:hades/models/note.dart';
+import 'package:hades/providers/note_provider.dart';
 
 class NoteBloc {
   final _repository = NoteProvider();

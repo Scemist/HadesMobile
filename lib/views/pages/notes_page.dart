@@ -1,8 +1,8 @@
-import 'package:digi_bloc/blocs/note_bloc.dart';
-import 'package:digi_bloc/blocs/note_event.dart';
-import 'package:digi_bloc/blocs/note_state.dart';
-import 'package:digi_bloc/models/note.dart';
-import 'package:digi_bloc/views/components/note_tile.dart';
+import 'package:hades/blocs/note_bloc.dart';
+import 'package:hades/blocs/note_event.dart';
+import 'package:hades/blocs/note_state.dart';
+import 'package:hades/models/note.dart';
+import 'package:hades/views/components/note_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 

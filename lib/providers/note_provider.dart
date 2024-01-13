@@ -1,4 +1,4 @@
-import 'package:digi_bloc/models/note.dart';
+import 'package:hades/models/note.dart';
 
 class NoteProvider {
   final List<Note> _notes = [];

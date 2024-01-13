@@ -1,6 +1,6 @@
-import 'package:digi_bloc/views/components/main_drawer.dart';
-import 'package:digi_bloc/views/pages/note_page.dart';
-import 'package:digi_bloc/views/pages/notes_page.dart';
+import 'package:hades/views/components/main_drawer.dart';
+import 'package:hades/views/pages/note_page.dart';
+import 'package:hades/views/pages/notes_page.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 

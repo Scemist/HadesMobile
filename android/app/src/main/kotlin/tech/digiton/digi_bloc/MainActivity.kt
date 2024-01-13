@@ -1,4 +1,4 @@
-package tech.digiton.digi_bloc
+package tech.digiton.hades
 
 import io.flutter.embedding.android.FlutterActivity
 
