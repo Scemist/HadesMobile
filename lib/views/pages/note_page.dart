@@ -1,34 +1,51 @@
+import 'package:digi_bloc/models/note.dart';
+import 'package:digi_bloc/views/components/main_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
 class NotePage extends StatefulWidget {
-  const NotePage({super.key});
+  final note;
+
+  const NotePage({super.key, this.note});
 
   @override
   State<NotePage> createState() => _NotePageState();
 }
 
 class _NotePageState extends State<NotePage> {
-  final titleController = TextEditingController();
-  final bodyController = TextEditingController();
+  late TextEditingController _titleController;
+  late TextEditingController _bodyController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _titleController = TextEditingController(
+      text: widget.note == null ? '' : widget.note.title,
+    );
+
+    _bodyController = TextEditingController(
+      text: widget.note == null ? '' : widget.note.body,
+    );
+  }
 
   @override
   void dispose() {
-    titleController.dispose();
-    bodyController.dispose();
+    _titleController.dispose();
+    _bodyController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    Widget body = Padding(
       padding: const EdgeInsets.all(20),
       child: Form(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextFormField(
-              controller: titleController,
+              controller: _titleController,
               decoration: const InputDecoration(
                 hintText: 'Título',
                 contentPadding: EdgeInsets.symmetric(
@@ -47,7 +64,7 @@ class _NotePageState extends State<NotePage> {
             const SizedBox(height: 15),
             Expanded(
               child: TextFormField(
-                controller: bodyController,
+                controller: _bodyController,
                 keyboardType: TextInputType.multiline,
                 textAlignVertical: TextAlignVertical.top,
                 expands: true,
@@ -74,13 +91,12 @@ class _NotePageState extends State<NotePage> {
               children: [
                 TextButton(
                   onPressed: () {
-                    print(titleController.text);
-                    print(bodyController.text);
+                    print(_titleController.text);
+                    print(_bodyController.text);
                   },
                   style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(
-                      Color.fromARGB(255, 45, 83, 206)
-                    ),
+                        Color.fromARGB(255, 45, 83, 206)),
                   ),
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
@@ -91,7 +107,7 @@ class _NotePageState extends State<NotePage> {
                         Icon(LucideIcons.save, color: Colors.white),
                         Text('Salvar', style: TextStyle(color: Colors.white)),
                       ],
-                    )
+                    ),
                   ),
                 )
               ],
@@ -100,5 +116,22 @@ class _NotePageState extends State<NotePage> {
         ),
       ),
     );
+
+    if (widget.note != null) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Wrap(
+            spacing: 10,
+            children: [Icon(LucideIcons.bookLock), Text('Hades')],
+          ),
+          backgroundColor: Colors.black45,
+          foregroundColor: const Color.fromARGB(255, 236, 232, 232),
+        ),
+        backgroundColor: const Color.fromARGB(255, 38, 42, 56),
+        body: body,
+      );
+    } else {
+      return body;
+    }
   }
 }

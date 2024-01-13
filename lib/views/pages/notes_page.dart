@@ -7,9 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
 class NotesPage extends StatefulWidget {
-  final String title;
-
-  const NotesPage({super.key, required this.title});
+  const NotesPage({super.key});
 
   @override
   State<NotesPage> createState() => _NotesPageState();

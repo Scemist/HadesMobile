@@ -1,6 +1,7 @@
 import 'package:digi_bloc/blocs/note_bloc.dart';
 import 'package:digi_bloc/blocs/note_event.dart';
 import 'package:digi_bloc/models/note.dart';
+import 'package:digi_bloc/views/pages/note_page.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
@@ -20,7 +21,10 @@ class NoteTile extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       child: ListTile(
         onTap: () {
-          print('abrir');
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => NotePage(note: note)),
+          );
         },
         title: Text(note.title),
         textColor: Colors.white,
@@ -46,20 +50,6 @@ class NoteTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(14),
         ),
       ),
-    );
-
-    return ListTile(
-      title: Text(note.title),
-      leading: const Icon(LucideIcons.file),
-      trailing: InkWell(
-        child: const Icon(LucideIcons.trash),
-        onTap: () {
-          _noteBloc.inputNote.add(DestroyNote(note: note));
-        },
-      ),
-      onTap: () {
-        print('Opening');
-      },
     );
   }
 }

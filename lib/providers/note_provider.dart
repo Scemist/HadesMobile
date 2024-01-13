@@ -5,20 +5,20 @@ class NoteProvider {
 
   Future<List<Note>> get all {
     _notes.addAll([
-      Note(title: 'Teste'),
+      Note(title: 'Teste', body: 'Finalmente minahs notas, uai'),
       Note(title: 'Exemplo'),
       Note(title: 'Sem condição'),
     ]);
-    return Future.delayed(const Duration(seconds: 2), () => _notes);
+    return Future.delayed(const Duration(seconds: 1), () => _notes);
   }
 
   Future<List<Note>> store({required Note note}) async {
     _notes.add(note);
-    return Future.delayed(const Duration(seconds: 2), () => _notes);
+    return Future.delayed(const Duration(seconds: 1), () => _notes);
   }
 
   Future<List<Note>> destroy({required Note note}) async {
     _notes.remove(note);
-    return Future.delayed(const Duration(seconds: 2), () => _notes);
+    return Future.delayed(const Duration(seconds: 1), () => _notes);
   }
 }

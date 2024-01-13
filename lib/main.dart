@@ -19,7 +19,7 @@ class _MyAppState extends State<MyApp> {
   int currentIndex = 0;
 
   final screens = const [
-    NotesPage(title: 'Note List'),
+    NotesPage(),
     NotePage(),
   ];
 
@@ -35,6 +35,7 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         body: Padding(
           padding: const EdgeInsets.all(14),
+          // child: screens[currentIndex],
           child: IndexedStack(
             index: currentIndex,
             children: screens,
