@@ -1,3 +1,6 @@
+import 'package:hades/blocs/note_bloc.dart';
+import 'package:hades/blocs/note_event.dart';
+import 'package:hades/blocs/note_state.dart';
 import 'package:hades/views/components/main_drawer.dart';
 import 'package:hades/views/pages/note_page.dart';
 import 'package:hades/views/pages/notes_page.dart';
@@ -17,57 +20,75 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int currentIndex = 0;
+  final _noteBloc = NoteBloc();
 
-  final screens = const [
-    NotesPage(),
-    NotePage(),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _noteBloc.inputNote.add(GetNotes());
+  }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Hades',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        textTheme: Theme.of(context).textTheme.apply(bodyColor: Colors.white),
-        useMaterial3: true,
-      ),
-      home: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(14),
-          child: IndexedStack(
-            index: currentIndex,
-            children: screens,
+    return StreamBuilder<NoteState>(
+      stream: _noteBloc.outputNote,
+      builder: (context, state) {
+        // print(state);
+        // if (state.data is NoteLoadingState) {
+        //   print('CARREGAAANDOOOOOOOOOOOOO');
+        //   return const Center(child: CircularProgressIndicator());
+        // }
+
+        return MaterialApp(
+          title: 'Hades',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            textTheme: Theme.of(
+              context,
+            ).textTheme.apply(bodyColor: Colors.white),
+            useMaterial3: true,
           ),
-        ),
-        appBar: AppBar(
-          title: const Wrap(
-            spacing: 10,
-            children: [Icon(LucideIcons.bookLock), Text('Hades')],
-          ),
-          backgroundColor: Colors.black45,
-          foregroundColor: const Color.fromARGB(255, 236, 232, 232),
-        ),
-        endDrawer: const MainDrawer(),
-        backgroundColor: const Color.fromARGB(255, 38, 42, 56),
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: const Color.fromARGB(255, 21, 23, 31),
-          fixedColor: Colors.white,
-          unselectedItemColor: Colors.white60,
-          onTap: (index) => setState(() => currentIndex = index ),
-          currentIndex: currentIndex,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(LucideIcons.fileStack),
-              label: 'Notas',
+          home: Scaffold(
+            body: Padding(
+              padding: const EdgeInsets.all(14),
+              child: IndexedStack(
+                index: currentIndex,
+                children: [
+                  NotesPage(bloc: _noteBloc, state: state),
+                  NotePage(bloc: _noteBloc),
+                ],
+              ),
             ),
-            BottomNavigationBarItem(
-              icon: Icon(LucideIcons.bookPlus),
-              label: 'Escrever',
-            )
-          ],
-        ),
-      ),
+            appBar: AppBar(
+              title: const Wrap(
+                spacing: 10,
+                children: [Icon(LucideIcons.bookLock), Text('Hades')],
+              ),
+              backgroundColor: Colors.black45,
+              foregroundColor: const Color.fromARGB(255, 236, 232, 232),
+            ),
+            endDrawer: const MainDrawer(),
+            backgroundColor: const Color.fromARGB(255, 38, 42, 56),
+            bottomNavigationBar: BottomNavigationBar(
+              backgroundColor: const Color.fromARGB(255, 21, 23, 31),
+              fixedColor: Colors.white,
+              unselectedItemColor: Colors.white60,
+              onTap: (index) => setState(() => currentIndex = index),
+              currentIndex: currentIndex,
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(LucideIcons.fileStack),
+                  label: 'Notas',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(LucideIcons.bookPlus),
+                  label: 'Escrever',
+                )
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
