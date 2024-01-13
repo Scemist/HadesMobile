@@ -1,6 +1,6 @@
 import 'package:hades/blocs/note_event.dart';
-import 'package:hades/models/note.dart';
 import 'package:flutter/material.dart';
+import 'package:hades/models/note.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
 class NotePage extends StatefulWidget {
@@ -39,18 +39,39 @@ class _NotePageState extends State<NotePage> {
 
   @override
   Widget build(BuildContext context) {
-    Widget body = Padding(
-      padding: const EdgeInsets.all(20),
-      child: Form(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            TextFormField(
-              controller: _titleController,
+    Widget body = Form(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          TextFormField(
+            controller: _titleController,
+            decoration: const InputDecoration(
+              hintText: 'Título',
+              contentPadding: EdgeInsets.symmetric(
+                vertical: 5,
+                horizontal: 20,
+              ),
+              hintStyle: TextStyle(color: Colors.white70),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+                borderSide: BorderSide.none,
+              ),
+              filled: true,
+              fillColor: Color.fromARGB(255, 59, 65, 85),
+            ),
+          ),
+          const SizedBox(height: 15),
+          Expanded(
+            child: TextFormField(
+              controller: _bodyController,
+              keyboardType: TextInputType.multiline,
+              textAlignVertical: TextAlignVertical.top,
+              expands: true,
+              maxLines: null,
               decoration: const InputDecoration(
-                hintText: 'Título',
+                hintText: 'Lorem ipsum...',
                 contentPadding: EdgeInsets.symmetric(
-                  vertical: 5,
+                  vertical: 10,
                   horizontal: 20,
                 ),
                 hintStyle: TextStyle(color: Colors.white70),
@@ -62,61 +83,47 @@ class _NotePageState extends State<NotePage> {
                 fillColor: Color.fromARGB(255, 59, 65, 85),
               ),
             ),
-            const SizedBox(height: 15),
-            Expanded(
-              child: TextFormField(
-                controller: _bodyController,
-                keyboardType: TextInputType.multiline,
-                textAlignVertical: TextAlignVertical.top,
-                expands: true,
-                maxLines: null,
-                decoration: const InputDecoration(
-                  hintText: 'Lorem ipsum...',
-                  contentPadding: EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 20,
-                  ),
-                  hintStyle: TextStyle(color: Colors.white70),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    borderSide: BorderSide.none,
-                  ),
-                  filled: true,
-                  fillColor: Color.fromARGB(255, 59, 65, 85),
-                ),
-              ),
-            ),
-            const SizedBox(height: 15),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                TextButton(
-                  onPressed: () {
+          ),
+          const SizedBox(height: 15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              TextButton(
+                onPressed: () {
+                  if (widget.note != null) {
                     widget.note.title = _titleController.text;
                     widget.note.body = _bodyController.text;
-
                     widget.bloc.inputNote.add(UpdateNote(note: widget.note));
-                  },
-                  style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(
-                        Color.fromARGB(255, 45, 83, 206)),
+                  } else {
+                    widget.bloc.inputNote.add(
+                      StoreNote(
+                        note: Note(
+                          title: _titleController.text,
+                          body: _bodyController.text,
+                        ),
+                      ),
+                    );
+                  }
+                },
+                style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(
+                      Color.fromARGB(255, 45, 83, 206)),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+                  child: Wrap(
+                    spacing: 10,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      Icon(LucideIcons.save, color: Colors.white),
+                      Text('Salvar', style: TextStyle(color: Colors.white)),
+                    ],
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
-                    child: Wrap(
-                      spacing: 10,
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      children: [
-                        Icon(LucideIcons.save, color: Colors.white),
-                        Text('Salvar', style: TextStyle(color: Colors.white)),
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ],
-        ),
+                ),
+              )
+            ],
+          ),
+        ],
       ),
     );
 
@@ -131,7 +138,10 @@ class _NotePageState extends State<NotePage> {
           foregroundColor: const Color.fromARGB(255, 236, 232, 232),
         ),
         backgroundColor: const Color.fromARGB(255, 38, 42, 56),
-        body: body,
+        body: Padding(
+          padding: const EdgeInsets.all(15),
+          child: body,
+        ),
       );
     } else {
       return body;

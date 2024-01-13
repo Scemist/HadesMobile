@@ -1,10 +1,8 @@
 import 'package:hades/blocs/note_bloc.dart';
 import 'package:hades/blocs/note_event.dart';
 import 'package:hades/blocs/note_state.dart';
-import 'package:hades/models/note.dart';
 import 'package:hades/views/components/note_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 
 class NotesPage extends StatefulWidget {
   const NotesPage({super.key});
@@ -27,12 +25,12 @@ class _NotesPageState extends State<NotesPage> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ElevatedButton(
-          onPressed: () async {
-            _noteBloc.inputNote.add(StoreNote(note: Note(title: 'Olá Mundo')));
-          },
-          child: const Icon(LucideIcons.plus),
-        ),
+        // ElevatedButton(
+        //   onPressed: () async {
+        //     _noteBloc.inputNote.add(StoreNote(note: Note(title: 'Olá Mundo')));
+        //   },
+        //   child: const Icon(LucideIcons.plus),
+        // ),
         Expanded(
           child: StreamBuilder<NoteState>(
             stream: _noteBloc.outputNote,
