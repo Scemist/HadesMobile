@@ -6,22 +6,6 @@ class MainBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      backgroundColor: const Color.fromARGB(255, 21, 23, 31),
-      fixedColor: Colors.white,
-      unselectedItemColor: Colors.white60,
-      // onTap: () {},
-      currentIndex: currentIndex,
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(LucideIcons.fileStack),
-          label: 'Notas',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(LucideIcons.bookPlus),
-          label: 'Escrever',
-        )
-      ],
-    );
+    return Text('Hi');
   }
 }

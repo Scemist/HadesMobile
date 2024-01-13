@@ -18,7 +18,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   int currentIndex = 0;
 
-  final screens = [
+  final screens = const [
     NotesPage(title: 'Note List'),
     NotePage(),
   ];

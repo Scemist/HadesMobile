@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 
 class NotePage extends StatefulWidget {
   const NotePage({super.key});
@@ -66,6 +67,34 @@ class _NotePageState extends State<NotePage> {
                   fillColor: Color.fromARGB(255, 59, 65, 85),
                 ),
               ),
+            ),
+            const SizedBox(height: 15),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    print(titleController.text);
+                    print(bodyController.text);
+                  },
+                  style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(
+                      Color.fromARGB(255, 45, 83, 206)
+                    ),
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+                    child: Wrap(
+                      spacing: 10,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        Icon(LucideIcons.save, color: Colors.white),
+                        Text('Salvar', style: TextStyle(color: Colors.white)),
+                      ],
+                    )
+                  ),
+                )
+              ],
             ),
           ],
         ),
