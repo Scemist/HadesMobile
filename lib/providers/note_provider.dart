@@ -10,8 +10,6 @@ class NoteProvider {
     var notes = await storage.read(key: 'notes') ?? '[]';
     List noteList = jsonDecode(notes);
 
-    print(notes);
-
     return noteList
         .map<Note>((note) => Note(
               title: note['title'],
@@ -37,8 +35,10 @@ class NoteProvider {
   }
 
   Future<List<Note>> destroy({required Note note}) async {
-    var notes = await all;
-    notes.remove(note);
+    var notesJson = await storage.read(key: 'notes') ?? '[]';
+    List notes = jsonDecode(notesJson);
+
+    notes.removeWhere((noteIterated) => noteIterated['id'] == note.id);
     await storage.write(key: 'notes', value: jsonEncode(notes));
 
     return all;
@@ -47,6 +47,15 @@ class NoteProvider {
   Future<List<Note>> update({required Note note}) async {
     var noteJson = await storage.read(key: 'notes') ?? '[]';
     List notes = jsonDecode(noteJson);
+
+    notes.removeWhere((noteIterated) => noteIterated['id'] == note.id);
+    notes.add({
+      'id': note.id,
+      'title': note.title,
+      'body': note.body,
+    });
+
+    await storage.write(key: 'notes', value: jsonEncode(notes));
 
     return all;
   }
