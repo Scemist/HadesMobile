@@ -107,7 +107,8 @@ class _NotePageState extends State<NotePage> {
                 },
                 style: const ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(
-                      Color.fromARGB(255, 45, 83, 206)),
+                    Color.fromARGB(255, 45, 83, 206),
+                  ),
                 ),
                 child: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),

@@ -1,28 +1,53 @@
+import 'dart:convert';
+
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hades/models/note.dart';
 
 class NoteProvider {
-  final List<Note> _notes = [];
+  final FlutterSecureStorage storage = const FlutterSecureStorage();
 
-  Future<List<Note>> get all {
-    _notes.addAll([
-      Note(title: 'Teste', body: 'Finalmente minahs notas, uai'),
-      Note(title: 'Exemplo'),
-      Note(title: 'Sem condição'),
-    ]);
-    return Future.delayed(const Duration(seconds: 1), () => _notes);
+  Future<List<Note>> get all async {
+    var notes = await storage.read(key: 'notes') ?? '[]';
+    List noteList = jsonDecode(notes);
+
+    print(notes);
+
+    return noteList
+        .map<Note>((note) => Note(
+              title: note['title'],
+              body: note['body'],
+              id: note['id'],
+            ))
+        .toList();
   }
 
   Future<List<Note>> store({required Note note}) async {
-    _notes.add(note);
-    return Future.delayed(const Duration(seconds: 1), () => _notes);
+    var noteJson = await storage.read(key: 'notes') ?? '[]';
+    List notes = jsonDecode(noteJson);
+
+    notes.add({
+      "title": note.title,
+      "body": note.body,
+      "id": note.id,
+    });
+
+    await storage.write(key: 'notes', value: jsonEncode(notes));
+
+    return all;
   }
 
   Future<List<Note>> destroy({required Note note}) async {
-    _notes.remove(note);
-    return Future.delayed(const Duration(seconds: 1), () => _notes);
+    var notes = await all;
+    notes.remove(note);
+    await storage.write(key: 'notes', value: jsonEncode(notes));
+
+    return all;
   }
 
-  update({required Note note}) {
-    return _notes;
+  Future<List<Note>> update({required Note note}) async {
+    var noteJson = await storage.read(key: 'notes') ?? '[]';
+    List notes = jsonDecode(noteJson);
+
+    return all;
   }
 }
