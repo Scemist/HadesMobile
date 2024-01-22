@@ -46,19 +46,20 @@ class _NotePageState extends State<NotePage> {
           TextFormField(
             controller: _titleController,
             decoration: const InputDecoration(
-              hintText: 'Título',
-              contentPadding: EdgeInsets.symmetric(
-                vertical: 5,
-                horizontal: 20,
-              ),
-              hintStyle: TextStyle(color: Colors.white70),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-                borderSide: BorderSide.none,
-              ),
-              filled: true,
-              fillColor: Color.fromARGB(255, 59, 65, 85),
-            ),
+                hintText: 'Título',
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: 5,
+                  horizontal: 20,
+                ),
+                hintStyle: TextStyle(color: Colors.white70),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  borderSide: BorderSide.none,
+                ),
+                filled: true,
+                fillColor: Color.fromARGB(255, 59, 65, 85),
+                prefixIcon: Icon(LucideIcons.book),
+                prefixIconColor: Colors.white70),
           ),
           const SizedBox(height: 15),
           Expanded(
@@ -84,10 +85,44 @@ class _NotePageState extends State<NotePage> {
               ),
             ),
           ),
-          const SizedBox(height: 15),
+          const SizedBox(height: 10),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              PopupMenuButton(
+                color: const Color.fromARGB(255, 132, 137, 155),
+                child: const Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Icon(LucideIcons.chevronUp),
+                ),
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    onTap: () {
+                      if (widget.note != null) {
+                        widget.bloc.inputNote.add(
+                          DestroyNote(note: widget.note),
+                        );
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: const Row(
+                      children: [
+                        Icon(
+                          LucideIcons.trash,
+                          color: Color.fromARGB(255, 116, 52, 47),
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          'Mover para a Lixeira',
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 116, 52, 47),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
               TextButton(
                 onPressed: () {
                   if (widget.note != null) {
@@ -107,8 +142,9 @@ class _NotePageState extends State<NotePage> {
                 },
                 style: const ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(
-                    Color.fromARGB(255, 45, 83, 206),
+                    Color.fromARGB(255, 49, 70, 138),
                   ),
+                  // shape:
                 ),
                 child: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
