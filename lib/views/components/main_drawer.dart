@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hades/views/pages/settings_page.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -53,7 +54,14 @@ class MainDrawer extends StatelessWidget {
                     iconColor: Colors.white70,
                     title: const Text('Settings'),
                     leading: const Icon(LucideIcons.settings2),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SettingsPage(),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),

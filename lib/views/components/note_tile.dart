@@ -33,19 +33,19 @@ class NoteTile extends StatelessWidget {
           LucideIcons.book,
           color: Color.fromARGB(255, 107, 107, 136),
         ),
-        trailing: InkWell(
-          child: const Padding(
-            padding: EdgeInsets.all(8),
-            child: Icon(
-              LucideIcons.trash,
-              color: Color.fromARGB(255, 128, 97, 89),
-              size: 15,
-            ),
-          ),
-          onTap: () {
-            _noteBloc.inputNote.add(DestroyNote(note: note));
-          },
-        ),
+        // trailing: InkWell(
+        //   child: const Padding(
+        //     padding: EdgeInsets.all(8),
+        //     child: Icon(
+        //       LucideIcons.trash,
+        //       color: Color.fromARGB(255, 128, 97, 89),
+        //       size: 15,
+        //     ),
+        //   ),
+        //   onTap: () {
+        //     _noteBloc.inputNote.add(DestroyNote(note: note));
+        //   },
+        // ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14),
         ),
